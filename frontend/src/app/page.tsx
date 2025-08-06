@@ -3,8 +3,13 @@
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import DashboardStats from '@/components/dashboard/DashboardStats';
 import PlayersList from '@/components/players/PlayersList';
+import BreakoutCandidates from '@/components/predictions/BreakoutCandidates';
+import { usePredictionSummary } from '@/lib/hooks/usePredictions';
 
 export default function HomePage() {
+  const { summary } = usePredictionSummary();
+  const hasPredictions = summary && summary.total_predictions > 0;
+
   return (
     <DashboardLayout>
       <div className="space-y-8">
@@ -40,6 +45,9 @@ export default function HomePage() {
 
         {/* Dashboard Stats */}
         <DashboardStats />
+
+        {/* Breakout Candidates Section (only show if predictions exist) */}
+        {hasPredictions && <BreakoutCandidates />}
 
         {/* Players Section */}
         <PlayersList />

@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from app.models.database import create_tables
 from app.routers.players import router as players_router
+from app.routers.predictions import router as predictions_router
 
 # Load environment variables
 load_dotenv()
@@ -30,6 +31,7 @@ async def startup_event():
 
 # Include routers
 app.include_router(players_router, prefix="/api")
+app.include_router(predictions_router, prefix="/api")
 
 @app.get("/")
 async def root():
