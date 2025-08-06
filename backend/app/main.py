@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
+from app.models.database import create_tables
+from app.routers.players import router as players_router
 
 # Load environment variables
 load_dotenv()
@@ -21,6 +23,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Create database tables on startup
+@app.on_event("startup")
+async def startup_event():
+    create_tables()
+
+# Include routers
+app.include_router(players_router, prefix="/api")
+
 @app.get("/")
 async def root():
     return {"message": "FantasyEdge AI API is running!"}
@@ -29,4 +39,6 @@ async def root():
 async def health_check():
     return {"status": "healthy", "version": "1.0.0"}
 
-# We'll add more routes here as we build features
+@app.get("/api")
+async def api_root():
+    return {"message": "FantasyEdge AI API v1.0.0", "docs": "/docs"}
