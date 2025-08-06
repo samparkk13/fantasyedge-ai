@@ -1,5 +1,10 @@
 # FantasyEdge AI
 
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)](https://fastapi.tiangolo.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-blue)](https://docs.docker.com/compose/)
+
 AI-powered fantasy football analytics platform that predicts which NFL players will significantly outperform their historical stats in the upcoming season.
 
 ## Features
